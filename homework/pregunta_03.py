@@ -5,6 +5,7 @@ solo puede utilizar las funciones y librerias basicas de python. No puede
 utilizar pandas, numpy o scipy.
 """
 
+import csv
 
 def pregunta_03():
     """
@@ -15,3 +16,16 @@ def pregunta_03():
     [('A', 53), ('B', 36), ('C', 27), ('D', 31), ('E', 67)]
 
     """
+    sums = {}
+    
+    with open('files/input/data.csv', newline='') as f:
+        reader = csv.reader(f, delimiter='\t')
+        for row in reader:
+            letra = row[0]           
+            valor = int(row[1])      
+            sums[letra] = sums.get(letra, 0) + valor
+
+    return sorted(sums.items())
+
+resultado = pregunta_03()
+print(resultado)
