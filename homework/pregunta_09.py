@@ -31,12 +31,9 @@ def pregunta_09():
     with open('files/input/data.csv', newline='', encoding='utf-8') as f:
         reader = csv.reader(f, delimiter='\t')
         for row in reader:
-            # 1) Separa las entradas "xxx:NN" de la columna 5
             partes = row[4].split(',')
-            # 2) Para cada parte extrae sólo la clave (las tres letras)
             for entry in partes:
                 clave = entry.split(':')[0]
-                # 3) Incrementa el conteo de esa clave
                 counts[clave] = counts.get(clave, 0) + 1
 
     return dict(sorted(counts.items()))
