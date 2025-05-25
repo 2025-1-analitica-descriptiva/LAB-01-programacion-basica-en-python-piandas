@@ -4,7 +4,7 @@ datos requeridos se encuentran en el archivo data.csv. En este laboratorio
 solo puede utilizar las funciones y librerias basicas de python. No puede
 utilizar pandas, numpy o scipy.
 """
-
+import csv
 
 def pregunta_11():
     """
@@ -16,3 +16,19 @@ def pregunta_11():
 
 
     """
+    sums = {}
+
+    with open('files/input/data.csv', newline='') as f:
+        reader = csv.reader(f, delimiter='\t')
+        for row in reader:
+            valor = int(row[1])
+            letras = row[3].split(',')
+            for letra in letras:
+                if letra in sums:
+                    sums[letra] += valor
+                else:
+                    sums[letra] = valor
+    return {k: sums[k] for k in sorted(sums)}
+
+resultado = pregunta_11()
+print(resultado)
